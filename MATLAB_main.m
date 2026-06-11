@@ -1,5 +1,25 @@
-%Ö±½Ó¶şÎ¬µü´ú·¨µÄ½á¹û
+
 %clc,clear,close all
+
+% -------------------------------------------------------------------------
+% Input data: R1
+%
+% R1 is the measured two-dimensional reflectivity/loss-related data matrix
+% used as the input of this deconvolution program. Before running this script,
+% the variable R1 must already exist in the MATLAB workspace, for example by
+% loading a .mat file that contains R1:
+%
+%     load('your_data_file.mat')
+%
+% The size of R1 determines the calculation grid size. Each element of R1
+% represents the measured value at the corresponding spatial sampling point.
+% In this program, R1 is converted into A by:
+%
+%     A = 99.9955 - R1;
+%
+% Therefore, R1 should have the same physical meaning and numerical scale as
+% the original measured reflectivity data used in this calculation.
+% -------------------------------------------------------------------------
 
 
 RM=max(max(R1));
@@ -39,9 +59,9 @@ figure,plot(R0(:,2),'r--'),hold on,plot(R1(:,2),'g')
 % Local function from: iterative22.m
 % ============================================================
 
-%%%%%%%%%%%%%%%%%%%%¶şÎ¬µü´ú·¨%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%äºŒç»´è¿­ä»£æ³•%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% sÎª2Î¬¾ØÕó£¬hÎª¸ßË¹¹âÊø£¬[n1,n2]=size(s)
+% sä¸º2ç»´çŸ©é˜µï¼Œhä¸ºé«˜æ–¯å…‰æŸï¼Œ[n1,n2]=size(s)
 function dy=iterative22(s,h,n1,n2)
 p=0.4;
 y=s;
@@ -81,7 +101,7 @@ dy=xk1;
 % Local function from: ggiterative22.m
 % ============================================================
 
-%%%%%%%%%%%%%%%%%%%%¶şÎ¬µü´ú·¨%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%äºŒç»´è¿­ä»£æ³•%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [dy,er0]=ggiterative22(s,h,N,q)
 [m1,n1]=size(s);
 y11=s(ceil(m1/2)-N/2:ceil(m1/2)+N/2,ceil(n1/2)-N/2:ceil(n1/2)+N/2);
@@ -141,7 +161,7 @@ dy=xk.*0.9999;
 % Local function from: ggiterative11.m
 % ============================================================
 
-%%%%%%%%%%%%%%%%%%%%¶şÎ¬µü´ú·¨%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%äºŒç»´è¿­ä»£æ³•%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [dy,er1]=ggiterative11(s,h,N,q,K)
 [m1,n1]=size(s);
 y11=s(ceil(m1/2)-N/2:ceil(m1/2)+N/2,ceil(n1/2)-N/2:ceil(n1/2)+N/2);
